@@ -16,6 +16,9 @@ var SpeechRecognition;
 var recognition;
 var isRecordOpen = false;
 
+// promise for QR
+var promiseQR = null;
+
 $(document).ready(function() {
     // Load cards...
     if (window.location.search.includes("?s=")) {
@@ -25,6 +28,7 @@ $(document).ready(function() {
         return;
     }
     var cards = getCards();
+    if (cards == null) { cards = {} };
     for (const [key, value] of Object.entries(cards)) {
         var elem = $("#add-card").before(card)
             .prev().find("input").val(key);
@@ -138,13 +142,17 @@ async function exportTerms(elem) {
 }
 
 async function exportQR(elem) {
-    return new Promise( async (resolve, reject) => {
-        var ENDPOINT = window.location.origin + "/index.html";
+    if (!Object.keys(getCards()).length) return;
+    if (promiseQR) { return console.log("Already searching for QR, returning...")}
+    promiseQR = new Promise( async (resolve, reject) => {
+        // Find endpoint - Add index.html if needed (local testing)
+        var ENDPOINT = window.location.origin + window.location.pathname.replace("index.html", "") +
+            (window.location.origin.includes(".github.io") ? "" : "index.html");
+        
         $('#exportQR').slideDown(100);
         $('#qrcode').html('');
         $('#qrMsg').text('Generating QR code...');
         $('body').css('overflow', 'hidden');
-        if (!Object.keys(getCards()).length) return;
         const cards = {};
         $(".card:not('#add-card')").each(function() {cards[$(this).find('input').val()] = $(this).find('textarea').val()});
         cardsStr = JSON.stringify(cards);
@@ -161,10 +169,14 @@ async function exportQR(elem) {
                 $('#qrMsg').attr('href', link).text(link);
                 resolve(jsonRes['result']['full_short_link']);
             } else {
+                promiseQR = null;
                 reject("Error requesting url service")
             }
         }
     })
+    await promiseQR;
+    promiseQR = null;
+    return;
 }
 
 function closeQR() {

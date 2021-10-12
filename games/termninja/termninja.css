@@ -12,7 +12,7 @@ html {
     width: 70vw;
     border-radius: 0.25em;
     padding: 5px;
-    background-color: brown;
+    background-color: var(--primary-dark);
     margin: auto;
     font-size: 32px;
     z-index: 99;
@@ -29,13 +29,21 @@ html {
     margin-top: 5vh;
 }
 #fruits {
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: calc(100vh - 50px);
+    width: 100%;
+    overflow: hidden;
+
 }
 .fruit {
     text-align: center;
     box-shadow: 0px 0px 20px #00000088;
     padding: 20px 60px;
     position: absolute;
+    bottom: 0;
+    margin: auto;
     max-width: 20vw;
     background-color: #885555;
     border-radius: 25em;
@@ -45,9 +53,11 @@ html {
     position: absolute;
     font-size: 24px;
     animation: messageMovement 1s;
+    bottom: 0;
 }
 #invisText {
-    display: none;
+    opacity: 0;
+    position: fixed
 }
 @keyframes messageMovement {
     0% {
@@ -60,6 +70,24 @@ html {
     }
     100% {
         transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes termPop {
+    0% {
+        transform: scale(1) rotate(30deg);
+        filter: inherit;
+    }
+    60% {
+        transform: scale(1.5) rotate(0deg);
+        opacity: 1;
+    }
+    70% {
+        filter: brightness(5);
+    }
+    100% {
+        transform: scale(0);
         opacity: 0;
     }
 }

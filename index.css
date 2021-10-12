@@ -220,7 +220,7 @@ div.term {
     width: min(75vw, 50vh);
 }
 #exportQR a {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     text-decoration: none;
     color: black;
@@ -234,6 +234,11 @@ div.term {
     font-weight: normal;
     padding: 10px;
 }
+#credits a {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: bold;
+}
 .btn-record, #record-btn {
     border-radius: 100%;
     padding: 100px;
@@ -242,6 +247,10 @@ div.term {
     font-size: 200px;
 }
 @media only screen and (max-width: 500px) {
+    #exportQR a {
+        font-size: 5vw;
+        bottom: 50px;
+    }
     .btn-record *, #record-btn * {
         font-size: 30vw;
     }
