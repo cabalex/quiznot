@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="quiznot-temp.ico">
+    <script src="core/index.js" type="text/javascript"></script>
+    <script src="core/cards.js" type="text/javascript"></script>
+    <script src="core/qrcode.min.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiznot</title>
+</head>
+<body>
+    <div id="header">
+        <ul>
+            <!-- probably bad practice but i like my full links-->
+            <img src="quiznot-temp.ico" width="30px" style="margin: -5px 5px">
+            <li id="title" onclick="showCredits()" style="cursor: pointer">Quiznot <span style="font-size: 12px">(credits)</span></li>
+        </ul>
+    </div>
+    <div style="height: 50px"></div>
+    <div id="games-container">
+        <!-- Cover the games on client side -->
+        <div id="cover"></div>
+        <b id="games-message" style="margin-left: 10px">Enter a term or two before playing some games</b>
+        <div id="gamelist">
+            <a href="games/learn/index.html" title="Learn your terms through reinforcement." class="btn"><span class="material-icons">school</span> Learn</a>
+            <a href="games/quiz/index.html" title="Quiz yourself!" class="btn"><span class="material-icons">quiz</span> Quiz</a>
+            <a title="Guide a line of balls through a series of blocks. Get the right answer to lengthen your chain. Last as long as you can!" class="btn-disabled"><img class="img-icons" src="games/termvsblock/icon.png"> Term vs. Block</a>
+            <a href="games/racer/index.html" title="Answer your terms correctly to revv up your engine and win the race!" class="btn"><span class="material-icons">directions_car</span> Racer</a>
+            <a href="games/termninja/index.html" title="Slice through blocks of definitions using your knowledge!" class="btn"><span class="material-icons">browser_not_supported</span> Term Ninja</a>
+        </div>
+    </div>
+    <div id="cards-quickactions">
+        <div class="btn" title="Record terms with your voice! Opens the record panel." id="open-record" onclick="record()"><span class="material-icons">mic</span></div>
+        <div class="btn" title="Import terms. You can also import from Quizlet as well!" onclick="importQuizlet()"><span class="material-icons">cloud_upload</span></div>
+        <div class="btn-disabled" disable-btn="true" title="Export terms to clipboard." id="btn-exportterms" onclick="exportTerms(this)"><span class="material-icons">cloud_download</span></div>
+        <div class="btn-disabled" disable-btn="true" title="Export terms as a QR code." id="btn-exportqr" onclick="exportQR(this)"><span class="material-icons">qr_code</span></div>
+        <div class="btn-disabled" disable-btn="true" onclick="flipTermsDef()" id="btn-termdef"><span class="material-icons">flip_camera_android</span> Flip Terms and Definitions</div>
+        <div class="btn-danger" onclick="removeAllCards()"><span class="material-icons">delete</span> Delete all</div>
+        <p id="termCount">0 terms</p>
+    </div>
+    <div id="cardlist">
+        <div class="card" id="add-card" tabindex="0" onmousedown="addCard(); event.preventDefault(); event.stopPropagation();" onfocus="addCard();">
+            Add a card...
+        </div>
+    </div>
+    <div id="record" class="cover">
+        <div class="btn" style="background-color: transparent; color: black;" onclick="closeRecord()"><span class="material-icons">arrow_back</span></div>
+        <div class="cover-center" id="record-center">
+            <h1 id="transcript-term">Tap to record a term</h1>
+            <h1 id="transcript-def"></h1>
+            <h1 id="transcript-confirm"></h1>
+            <div class="btn btn-record" id="record-btn"><span class="material-icons">mic</span></div>
+            <p>english only - recording will end automatically, or manually by tapping again<br>your speech may be sent to an external server for recognition depending on your browser</p>
+        </div>
+    </div>
+    <div id="exportQR" class="cover">
+        <div class="btn" style="background-color: transparent; color: black;" onclick="closeQR()"><span class="material-icons">arrow_back</span></div>
+        <a id="qrMsg">Your QR codes will appear here.</a>
+        <div class="cover-center" id="qrcode">
+            
+        </div>
+    </div>
+    <div id="credits" class="cover">
+        <div class="btn" style="background-color: transparent; color: black;" onclick="hideCredits()"><span class="material-icons">arrow_back</span></div>
+        <div class="cover-center">
+            <h1>Quiznot</h1>
+            <p>Was created by:</p>
+            <br>
+            <p>
+                Alex Sherbrooke (<a href="https://cabalex.github.io">cabalex</a>)
+            </p>
+            <p>
+                Hershraj Niranjani (<a href="https://github.com/talkierbox">talkierbox</a>)
+            </p>
+            <p>
+                Ryan McCombs
+            </p>
+            <br>
+            <h2>Built with:</h2>
+            <p>Pure JS, jQuery, <a href="https://github.com/davidshimjs/qrcodejs">QRCode.js</a> (QR Codes), <a href="https://shrtco.de/">shrtco.de</a> (URL shortening)</p>
+        </div>
+    </div>
+</body>
+</html>

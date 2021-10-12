@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="stylesheet" href="racer.css">
+    <link rel="shortcut icon" href="../../quiznot-temp.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../core/index.js" type="text/javascript"></script>
+    <title>Quiznot / Racer</title>
+    <script type="text/javascript">
+        const cards = getCards();
+        if (Object.keys(cards).length == 0) {
+            window.location = '../../index.html';
+        }
+    </script>
+    <!-- Homegrown styles for more uniformality -->
+    <script src="car.js" type="text/javascript"></script>
+    <script src="racer.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="header">
+        <ul>
+            <!-- probably bad practice but i like my full links-->
+            <a href="../../index.html" id="title"><span class="material-icons">arrow_back</span> Quiznot</a>
+        </ul>
+    </div>
+    <div style="height: 50px"></div>
+    <div id="gameWindow">
+        <div id="gameModal" class="modal" onclick="startGame()">
+            <h1>Click to play</h1>
+        </div>
+        <div id="finishModal" class="modal">
+            <div id="finishInner">
+                <h1>FINISH!</h1>
+                <p><span class="material-icons">flag</span> You placed <span class="highlight" id="pos">0th</span> out of <span class="highlight" id="racers">12</span>.</p>
+                <p><span class="material-icons">check</span> You got <span class="highlight" id="right">0</span> questions right, and <span class="highlight" id="wrong"></span> wrong.</p>
+                <p id="inspirationalText"></p>
+                <!-- Todo: maybe put some stats here... -->
+                <div class="btnrow">
+                    <a href="./index.html" class="btn"><span class="material-icons">replay</span> Play again</a>
+                    <a href="../../index.html" class="btn-danger"><span class="material-icons">arrow_back</span> Back home</a>
+                </div>
+                
+            </div>
+        </div>
+        <h1 id="countdown"></h1>
+        <div id="raceProgress">
+            <span id="trackPos">0</span>
+            /
+            <span id="trackLength">0</span>
+        </div>
+        <div id="questionText">
+            <p id="question">Get ready!</p>
+            <input type="text" id="answer">
+            <div id="raceStats">
+                <div class="gauge four">
+                    <div class="slice-colors">
+                        <div class="st slice-item"></div>
+                        <div class="st slice-item"></div>
+                        <div class="st slice-item"></div>
+                        <div class="st slice-item"></div>
+                    </div>
+                    <div class="needle"></div>
+                    <div class="gauge-center">
+                        <div class="speedDisp">0</div>
+                        <div class="racePos">1st</div>
+                    </div>    
+                  </div>
+            </div>
+        </div>
+        
+        <div id="raceGround"></div>
+        <!-- background -->
+    </div>
+</body>
+</html>

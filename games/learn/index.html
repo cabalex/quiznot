@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="shortcut icon" href="../../quiznot-temp.ico">
+    <link rel="stylesheet" href="../../index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../core/index.js" type="text/javascript"></script>
+    <title>Quiznot / Learn</title>
+    <script type="text/javascript">
+        const cards = getCards();
+        if (Object.keys(cards).length == 0) {
+            window.location = '../../index.html';
+        }
+    </script>
+    <!-- Homegrown styles for more uniformality -->
+    <script src="learn.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="learn.css">
+</head>
+<body>
+    <div id="header">
+        <ul>
+            <!-- probably bad practice but i like my full links-->
+            <a href="../../index.html" id="title"><span class="material-icons">arrow_back</span> Quiznot</a>
+        </ul>
+    </div>
+    <div style="height: 50px"></div>
+    <!-- page content -->
+    <div class="flip-card">
+        <div class="card-inner" id="unflipped">
+            <div class="card-front">
+                <div class="definition">
+                    Something
+                </div>
+            </div>
+            <div class="card-back">
+                <div class="term">
+                    Something 2
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Controller Buttons ig -->
+    <p id="tutorialText"><span class="material-icons">ads_click</span> TO FLIP</p>
+    <p id="questionNum">0/0</p>
+    <div id="cards-quickactions">
+        <div class="btn" onclick="question('previous')"><span class="material-icons">chevron_left</span></div>
+        <div class="btn" onclick="shuffle()"><span class="material-icons">shuffle</span> Shuffle Cards</div>
+        <div class="btn" onclick="toggleStudy()">Studying <span id="currentStudy">terms</span></div>
+        <div class="btn" onclick="question('next')"><span class="material-icons">chevron_right</span></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+#bottom-quickactions {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+}
+.card {
+    flex-direction: column;
+    white-space: pre-line;
+    line-height: 30px;
+}
+.card-success {
+    background-color: var(--success-dark);
+    border-color: var(--success-dark);
+}
+.card-success *, .card-danger * {
+    color: white;
+    border-color: transparent !important;
+}
+.card-danger input {
+    color: var(--danger);
+    text-decoration: line-through;
+}
+.card-success input {
+    color: var(--success-light); /* success is kinda unreadable */
+}
+.card-danger {
+    background-color: var(--danger-dark);
+    border-color: var(--danger-dark);
+}
+.correct-answer, .correct-answer span {
+    color: var(--danger-light);
+}
+.card input {
+    border-bottom: 2px solid var(--dark-grey);
+}

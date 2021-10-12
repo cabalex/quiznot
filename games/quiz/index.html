@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="shortcut icon" href="../../quiznot-temp.ico">
+    <link rel="stylesheet" href="quiz.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiznot / Quiz</title>
+    <script src="../../core/index.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        const cards = getCards();
+        if (Object.keys(cards).length == 0) {
+            window.location = '../../index.html';
+        }
+    </script>
+    <script src="quiz.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="header">
+        <ul>
+            <!-- probably bad practice but i like my full links-->
+            <a href="../../index.html" id="title"><span class="material-icons">arrow_back</span> Quiznot</a>
+        </ul>
+    </div>
+    <div style="height: 50px"></div>
+    <!-- page content -->
+    <div id="cardlist">
+        <p><span style="font-size: 50px">QUIZ</span><span style="color: var(--grey)">NOT</span></p>
+        <p>Test your memory in a one-on-one test. No pressure!</p>
+    </div>
+    <div id="bottom-quickactions">
+        <div class="btn" id="submit" onclick="parseQuizAnswers()">Submit</div>
+        <span id="quizState"></span>
+    </div>
+    <div style="height: 50vh"></div>
+</body>
+</html>

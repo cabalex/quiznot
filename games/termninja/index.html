@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="shortcut icon" href="../../quiznot-temp.ico">
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="stylesheet" href="termninja.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../core/index.js" type="text/javascript"></script>
+    <title>Quiznot / Term Ninja</title>
+    <script type="text/javascript">
+        const cards = getCards();
+        if (Object.keys(cards).length == 0) {
+            window.location = '../../index.html';
+        }
+    </script>
+    <!-- Homegrown styles for more uniformality -->
+    <script src="termninja.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="header">
+        <ul>
+            <!-- probably bad practice but i like my full links-->
+            <a href="../../index.html" id="title"><span class="material-icons">arrow_back</span> Quiznot</a>
+        </ul>
+    </div>
+    <div style="height: 50px"></div>
+    <!-- page content -->
+    <input id="invisText" type="text">
+    <div id="gameWindow">
+        <div id="topUI">
+            <span id="timer">0:00</span>
+            <span id="points">0 pts</span>
+        </div>
+        <div id="finishModal" class="modal">
+            <div id="finishInner">
+                <h1>TIME!</h1>
+                <p>You earned <span class="highlight" id="ptsResult">0</span> points.</p>
+                <p><span class="material-icons">check</span> You solved <span class="highlight" id="right">0</span> terms.</p>
+                <p><span class="material-icons">star</span> Your highest combo was <span class="highlight" id="highestCombo">0</span>.</p>
+                <p id="inspirationalText"></p>
+                <!-- Todo: maybe put some stats here... -->
+                <div class="btnrow">
+                    <a href="./index.html" class="btn"><span class="material-icons">replay</span> Play again</a>
+                    <a href="../../index.html" class="btn-danger"><span class="material-icons">arrow_back</span> Back home</a>
+                </div>
+                
+            </div>
+        </div>
+        <div id="gameModal" class="modal" onclick="startGame()">
+            <h1>Click to play</h1>
+        </div>
+        <div id="fruits"></div>
+    </div>
+</body>
+</html>

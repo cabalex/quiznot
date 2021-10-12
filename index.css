@@ -1,0 +1,265 @@
+/*
+Root colors
+https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=42a5f5
+
+put the color into https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+to see alternate colors
+*/
+:root {
+    --primary: #42a5f5;
+    --primary-light: #80d6ff;
+    --primary-dark: #0077c2;
+    
+    --secondary: #f59342;
+    --secondary-light: #ffce59;
+    --secondary-dark: black;
+
+    --danger: #f44336;
+    --danger-light: #ff7961;
+    --danger-dark: #ba000d;
+
+    --success: #4caf50;
+    --success-light: #80e27e;
+    --success-dark: #087f23;
+
+    
+
+    --grey: lightgrey;
+    --dark-grey: grey;
+}
+
+html, body {
+    margin: 0;
+    font-family: Helvetica, sans-serif
+}
+
+/* fix some material icons shenanigans */
+.material-icons {
+    vertical-align: middle;
+}
+.img-icons {
+    height: 24px;
+    width: 24px;
+    vertical-align: middle;
+}
+
+#header {
+    height: 50px;
+    width: 100%;
+    vertical-align: middle;
+    background-color: var(--primary);
+    position: fixed;
+    top: 0;
+    z-index: 999 /* lol */
+}
+p {
+    vertical-align: middle;
+    margin: auto 0;
+}
+#title {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+#header ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Global buttons */
+.btn, .btn-danger, .btn-disabled, .btn-pressed {
+    text-decoration: none;
+    color: white;
+    user-select: none;
+    border-radius: 0.25em;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: fit-content;
+    animation-timing-function: ease-in;
+}
+.btn {
+    background-color: var(--primary);
+}
+.btn:hover {
+    background-color: var(--primary-light);
+}
+.btn-danger {
+    background-color: var(--danger);
+}
+.btn-danger:hover {
+    background-color: var(--danger-light);
+}
+.btn-disabled {
+    background-color: var(--dark-grey);
+    cursor: not-allowed;
+    color: var(--grey);
+}
+.btn-pressed {
+    background-color: var(--primary-dark);
+    cursor: auto;
+}
+
+.highlight {
+    font-size: 20px;
+    color: var(--secondary-light)
+}
+
+@keyframes copied {
+    0% {
+        background-color: var(--success)
+    }
+    100% {
+        background-color: var(--primary);
+    }
+}
+
+/* some quick actions */
+#cards-quickactions, #gamelist, #cardlist, .btnrow {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+}
+#cover {
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+#games-container {
+    background-color: var(--grey);
+    padding: 10px;
+    position: relative; /* relative positioning for cover */
+}
+
+/* Cards */
+
+#cardlist {
+    padding: 20px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    padding: 5px;
+}
+.card {
+    background-color: var(--grey);
+    padding: 10px;
+    border-radius:  0.25em;
+    width: calc(100% - 20px);
+    gap: 5px;
+    display: flex;
+    flex-direction: row;
+    border: 5px solid var(--grey);
+}
+/* input is used for term and definition boxes */
+.card input, .card textarea {
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: transparent;
+    width: 100%;
+    resize: none;
+    height: 100%;
+    transition: border 0.2s;
+}
+.card textarea::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+.card input:focus-visible, .card textarea:focus-visible {
+    outline: 0;
+    border-bottom: 5px solid var(--primary);
+}
+#add-card {
+    border: 5px dashed black;
+    background-color: transparent;
+    border-color: black;
+    transition: border-color 0.2s;
+    cursor: pointer;
+}
+#add-card:hover {
+    border-color: grey;
+}
+div.definition {
+    width: 300px;
+    flex-grow: 1;
+}
+.divider {
+    width: 2px;
+    background-color: black;
+}
+div.term {
+    flex-shrink: 0;
+    width: 25%;
+}
+/* record */
+.cover {
+    z-index: 999;
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    background-color: white;
+    height: calc(100vh - 50px);
+    width: 100vw;
+}
+#qrcode {
+    padding: 50px;
+}
+.cover-center, .cover-center * {
+    vertical-align: middle;
+    margin: auto;
+    text-align: center !important;
+}
+#qrcode > img {
+    width: min(75vw, 50vh);
+}
+#exportQR a {
+    position: absolute;
+    bottom: 0;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    font-size: 32px;
+}
+#record-center > h1, #record-center > p, #exportQR > a {
+    font-family: 'Poppins', 'Arial', sans-serif;
+    font-weight: normal;
+    padding: 10px;
+}
+.btn-record, #record-btn {
+    border-radius: 100%;
+    padding: 100px;
+}
+.btn-record *, #record-btn * {
+    font-size: 200px;
+}
+@media only screen and (max-width: 500px) {
+    .btn-record *, #record-btn * {
+        font-size: 30vw;
+    }
+    .btn-record, #record-btn {
+        padding: 20vw;
+    }
+}
+
+.modal {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: #00000088;
+    z-index: 100;
+}
+.modal * {
+    text-align: center;
+    vertical-align: middle;
+}

@@ -1,0 +1,195 @@
+body {
+    overflow: hidden;
+}
+#gameWindow {
+    position: relative;
+    height: calc(100vh - 50px);
+    background-color: lightskyblue;
+}
+#finishInner {
+    padding: 10px;
+    background-color: #15222E;
+    border-radius: 0.25em;
+    width: fit-content;
+    margin: auto;
+    margin-top: 5vh;
+}
+.btnrow {
+    justify-content: center;
+}
+#finishModal {display: none;}
+#countdown {
+    position: absolute;
+    font-family: Consolas, sans-serif;
+    top: calc(50% - 20vh);
+    left: calc(50% - 5vh);
+    line-height: 20vh;
+    font-size: 20vh;
+}
+@keyframes countdown {
+    0% {
+        transform: scale(0) rotate(180deg);
+    }
+    50% {
+        transform: scale(1) rotate(0);
+    }
+    100% {
+        transform: scale(0) rotate(-180deg);
+    }
+}
+#questionText {
+    position: absolute;
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.50);
+    left: 15vw;
+    width: 70vw;
+    border-radius: 0.25em;
+    padding: 5px;
+    background-color: #15222E;
+    margin: auto;
+    font-size: 32px;
+    z-index: 99;
+}
+/* MOBILE FRIENDLY !! */
+@media only screen and (max-width: 500px) {
+    #questionText {
+        width: calc(100vw - 10px);
+        left: 0;
+        border: 0;
+        padding: 5px;
+        border-bottom: 5px solid black;
+        border-radius: 0 0 0.25em 0.25em;
+    }
+}
+#question, #answer {
+    font-size: 32px;
+    font-family: Consolas, sans-serif;
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    width: calc(100% - 5px);
+}
+#question {
+    font-family: Arial, Helvetica, sans-serif
+}
+#answer {
+    border-bottom: 5px dashed var(--secondary-light);
+}
+#answer:focus-visible {
+    outline: 0;
+}
+
+
+#raceGround {
+    background-color: darkgrey;
+    position: absolute;
+    bottom: 0px;
+    width: 100vw;
+    height: 50px;
+    z-index: 1;
+}
+.car, .bgElem {
+    z-index: 2;
+    bottom: 50px;
+    position: absolute;
+    transition: transform 0.5s ease;
+    transition-timing-function: linear;
+}
+.bgElem {
+    z-index: 1;
+}
+#playerCar {
+    z-index: 3;
+}
+#raceProgress {
+    font-size: 30px;
+    color: white;
+    font-weight: bolder;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 100;
+}
+#raceStats {
+    position: absolute;
+    left: calc(50% - 100px);
+    bottom: -100px;
+    border-radius: 0.25em;
+    margin: auto;
+    font-size: 32px;
+    z-index: -15;
+}
+/* speedometer - Adapted from https://codepen.io/Rombecchi/pen/WNGodXY */
+  
+.gauge {
+background: #e7e7e7;
+box-shadow: 0 -3px 6px 2px rgba(0, 0, 0, 0.50);
+width: 200px;
+height: 100px;
+border-radius: 0 0 100px 100px !important;
+position: relative;
+overflow: hidden;
+}
+.gauge.min-scaled {
+transform: scale(0.5);
+}
+
+.gauge-center {
+content: '';
+color: #fff;
+width: 60%;
+height: 60%;
+background: #15222E;
+border-radius: 0 0 100px 100px !important;
+position: absolute;
+box-shadow: 0 -13px 15px -10px rgba(0, 0, 0, 0.28);
+right: 21%;
+top: 0;
+color: #fff;
+z-index:10;
+}
+
+.gauge-center .racePos, .gauge-center .speedDisp {display:block; width: 100%; text-align: center; border:0!important;}
+.gauge-center .racePos {font-size:16px; opacity:0.6;}
+.gauge-center .speedDisp {font-size:22px; margin-top: 5px;}
+
+.needle {
+width: 80px;
+height: 7px;
+background: #15222E;
+border-radius: 100%;
+position: absolute;
+top: -2px;
+left: 50%;
+transform-origin: 0% 4px;
+transform: rotate(180deg);
+box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.38);
+display:block;
+transition: transform 0.2s;
+z-index:9;
+}
+
+
+.slice-colors {height:100%;}
+
+.slice-colors .st {
+position: absolute;
+bottom: 0;
+width: 0;
+height: 0;
+border: 50px solid transparent;
+}
+
+
+.four .slice-colors .st.slice-item:nth-child(2) {
+left: 50%;
+border-top: 50px var(--primary-dark) solid;
+border-right: 50px var(--primary-dark) solid;
+background-color:#1eaa59;
+}
+
+.four .slice-colors .st.slice-item:nth-child(4) {
+right:50%;
+border-bottom: 50px var(--secondary) solid;
+border-right: 50px var(--secondary) solid;
+background-color:var(--danger);
+}
