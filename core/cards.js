@@ -134,7 +134,7 @@ async function exportTerms(elem) {
         navigator.clipboard.writeText(outputStr);
         $(elem).css('animation', 'copied 0.5s').find('span').text('check')
         await sleep(500);
-        $(elem).css('animation', '').find('span').text('cloud_upload')
+        $(elem).css('animation', '').find('span').text('cloud_download')
     } catch {
         prompt("Could not copy to clipboard (are you on an HTTPS website?)\nAlternatively, copy the text below.", outputStr)
     }
