@@ -20,6 +20,9 @@ var isRecordOpen = false;
 var promiseQR = null;
 
 $(document).ready(function() {
+    // Hide add card element initially (prevents janky animations)
+    $('#add-card-default').show();
+    $('#add-card-initial').hide();
     // Load cards...
     if (window.location.search.includes("?s=")) {
         // load new set
@@ -27,25 +30,22 @@ $(document).ready(function() {
         window.location.href = window.location.href.split("?")[0];
         return;
     }
-    var cards = getCards();
+    const cards = getCards();
     if (cards == null) { cards = {} };
+    // Load explore; do not load it if too many terms are out (lag)
+    if (Object.keys(cards).length < 50) {
+        loadExplore();
+    }
     for (const [key, value] of Object.entries(cards)) {
         var elem = $("#add-card").before(card)
             .prev().find("input").val(key);
         $("#add-card").prev().find("textarea").val(value);
     }
     $('#termCount').text(`${Object.keys(cards).length} terms`);
-    $("input").focusout(function() {saveCards()})
+    $("input:not(#termsetName)").focusout(function() {saveCards()})
     $("textarea").focusout(function() {saveCards()})
-    if (!Object.keys(cards).length) {
-        $("#cover").show();
-        $("#games-message").text("Enter a term or two before playing some games");
-        $("div[disable-btn='true']").attr('class', 'btn-disabled');
-    } else {
-        $("#cover").hide();
-        $("#games-message").text("Reinforce these terms");
-        $("div[disable-btn='true']").attr('class', 'btn');
-    }
+    update();
+
     // check if user can use microphone
     SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
     if (!SpeechRecognition) {
@@ -57,21 +57,30 @@ $(document).ready(function() {
 
 $('#add-card').focus(function() {addCard()})
 
-// Set cards in local storage based on cards in the webpage.
-function saveCards() {
-    var cards = {};
-    $(".card:not('#add-card')").each(function() {cards[$(this).find('input').val()] = $(this).find('textarea').val()});
-    localStorage.setItem("cards", JSON.stringify(cards));
-    $('#termCount').text(`${Object.keys(cards).length} terms`);
-    if (!Object.keys(cards).length) {
+// updates HTML elements to adapt to whether there is or isn't any cards saved.
+function update() {
+    if (!Object.keys(getCards()).length) {
         $("#cover").show();
+        $('#add-card-default').slideUp(100);
+        $('#add-card-initial').slideDown(100);
         $("#games-message").text("Enter a term or two before playing some games");
         $("div[disable-btn='true']").attr('class', 'btn-disabled');
     } else {
         $("#cover").hide();
-        $("#games-message").text("Reinforce these terms")
+        $('#add-card-default').slideDown(100);
+        $('#add-card-initial').slideUp(100);
+        $("#games-message").text("Reinforce these terms");
         $("div[disable-btn='true']").attr('class', 'btn');
     }
+}
+
+// Set cards in local storage based on cards in the webpage.
+function saveCards() {
+    var tempCards = {};
+    $('#cardlist').find(".card:not('#add-card')").each(function() {tempCards[$(this).find('input').val()] = $(this).find('textarea').val()});
+    localStorage.setItem("cards", JSON.stringify(tempCards));
+    $('#termCount').text(`${Object.keys(tempCards).length} terms`);
+    update();
     console.log("cards saved!")
 }
 
@@ -126,7 +135,7 @@ async function exportTerms(elem) {
     if(!Object.keys(getCards()).length) return;
     const cards = {};
     var outputStr = "";
-    $(".card:not('#add-card')").each(function() {cards[$(this).find('input').val()] = $(this).find('textarea').val()});
+    $("#cardlist").find(".card:not('#add-card')").each(function() {cards[$(this).find('input').val()] = $(this).find('textarea').val()});
     for (const [key, value] of Object.entries(cards)) {
         outputStr += `${key}\t${value}\n`
     }
@@ -141,9 +150,12 @@ async function exportTerms(elem) {
     
 }
 
-async function exportQR(elem) {
-    if (!Object.keys(getCards()).length) return;
-    if (promiseQR) { return console.log("Already searching for QR, returning...")}
+async function exportQR(elem, cardList=-1) {
+    if (typeof cardList != "object") {
+        cardList = getCards();
+    }
+    if (!Object.keys(cardList).length) return;
+    if (promiseQR) { $('#exportQR').slideDown(100); return console.log("Already searching for QR, returning...")}
     promiseQR = new Promise( async (resolve, reject) => {
         // Find endpoint - Add index.html if needed (local testing)
         var ENDPOINT = window.location.origin + window.location.pathname.replace("index.html", "") +
@@ -153,9 +165,7 @@ async function exportQR(elem) {
         $('#qrcode').html('');
         $('#qrMsg').text('Generating QR code...');
         $('body').css('overflow', 'hidden');
-        const cards = {};
-        $(".card:not('#add-card')").each(function() {cards[$(this).find('input').val()] = $(this).find('textarea').val()});
-        cardsStr = JSON.stringify(cards);
+        cardsStr = JSON.stringify(cardList);
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "https://api.shrtco.de/v2/shorten", true);
@@ -188,8 +198,10 @@ function closeQR() {
 function addCard() {
     $('#add-card').before(card);
     $('#add-card').prev().hide().slideDown(200, function() {$(this).find('input.term').select()});
-    $("input").focusout(function() {saveCards()})
-    $("textarea").focusout(function() {saveCards()})
+    $("input").off('focusout').focusout(saveCards)
+    $("textarea").off('focusout').focusout(saveCards)
+    if (!Object.keys(getCards()).length)
+        saveCards();
 }
 
 // Deletes a card. Takes the delete button element as its input.
@@ -199,23 +211,15 @@ function removeCard(elem) {
         $(this).remove(); 
         saveCards();
     })
-
-    if(Object.keys(getCards()) == 0){
-        $("#cover").show();
-        $("#games-message").text("Enter a term or two before playing some games");
-        $("div[disable-btn='true']").attr('class', 'btn-disabled');
-    }
 }
 
 function removeAllCards() {
     let isConfirmed = confirm('Are you sure you want to delete all of your terms?');
     if(!isConfirmed) return;
-    $(".card:not('#add-card')").slideUp(200, function() { $(this).remove()})
+    $('#cardlist').find(".card:not('#add-card')").slideUp(200, function() { $(this).remove()})
     localStorage.setItem("cards", "{}");
     $('#termCount').text(`0 terms`);
-    $("#cover").show();
-    $("#games-message").text("Enter a term or two before playing some games");
-    $("div[disable-btn='true']").attr('class', 'btn-disabled');
+    update();
 }
 
 /* Recording */
@@ -317,4 +321,59 @@ function showCredits() {
 
 function hideCredits() {
     $('#credits').slideUp(100);
+}
+
+/* explore */
+// Explore currently has a bug where if you add a term list with the same name as a preset, only the preset will show up. Working on a fix!
+function loadExplore() {
+    $('#explore-initial').hide();
+    for (const [key, value] of Object.entries(presetTerms)) {
+        var quickActions = `<div title="Generate a QR code for this termset." class="btn" onclick="exploreQR(\`${key}\`); event.stopPropagation();"><span class="material-icons">qr_code</span></div>`;
+        if (Object.keys(userPresetTerms).includes(key)) {
+            quickActions += `<div title="Delete this termset." class="btn-danger" onclick="removePreset(\`${key}\`); event.stopPropagation();"><span class="material-icons">delete</span></div>`;
+        }
+        var innerList = ""
+        Object.keys(value).forEach(v => {
+            innerList += `<div class="card"><div class="term">${v}</div><div class="definition">${value[v]}</div></div>`
+        })
+        $('#explore-end-initial').before(`<div onclick="loadPreset(\`${key}\`);" class="card termset"><header class="term"><h1>${key}</h1><p>${Object.keys(value).length} terms</p><div class="btnrow">${quickActions}</div></header><div class="list termsetPreview">${innerList}</div></div>`)
+    }
+}
+
+function exploreQR(name) {
+    exportQR(null, presetTerms[name]);
+}
+
+function loadPreset(name) {
+    console.log(name)
+    localStorage.setItem('cards', JSON.stringify(presetTerms[name]));
+    window.location.reload();
+}
+
+function removePreset(name) {
+    delete userPresetTerms[name];
+    localStorage.setItem('userPresetTerms', JSON.stringify(userPresetTerms));
+    window.location.reload();
+}
+
+function setPreset() {
+    let name = $('#termsetName').val();
+    // TODO: Have validation directly in the app, instead of annoying alerts
+    if (Object.keys(getCards()).length == 0) {
+        alert("Add some cards before adding your term list!");
+        return;
+    }
+    if (!name) {
+        alert("Please pick a valid name first!")
+        return;
+    }
+    var tempUserPresetTerms;
+    if (localStorage.getItem('userPresetTerms')) {
+        tempUserPresetTerms = JSON.parse(localStorage.getItem('userPresetTerms'));
+    } else {
+        tempUserPresetTerms = {}
+    }
+    tempUserPresetTerms[name] = getCards();
+    localStorage.setItem('userPresetTerms', JSON.stringify(tempUserPresetTerms));
+    window.location.reload();
 }

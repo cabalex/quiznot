@@ -116,7 +116,7 @@ p {
 }
 
 /* some quick actions */
-#cards-quickactions, #gamelist, #cardlist, .btnrow {
+#cardlist, .btnrow, .list {
     margin: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -132,7 +132,7 @@ p {
     height: 100%;
     position: absolute;
 }
-#games-container {
+.container, #games-container {
     background-color: var(--grey);
     padding: 10px;
     position: relative; /* relative positioning for cover */
@@ -140,7 +140,7 @@ p {
 
 /* Cards */
 
-#cardlist {
+#cardlist, .list {
     padding: 20px;
     flex-wrap: nowrap;
     flex-direction: column;
@@ -177,13 +177,15 @@ p {
 }
 #add-card {
     border: 5px dashed black;
+    display: block;
     background-color: transparent;
     border-color: black;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, filter 0.2s;
     cursor: pointer;
 }
 #add-card:hover {
     border-color: grey;
+    filter: brightness(1.1);
 }
 div.definition {
     width: 300px;
@@ -271,4 +273,48 @@ div.term {
 .modal * {
     text-align: center;
     vertical-align: middle;
+}
+
+#add-card-initial, #explore-end-initial {
+    width: 100%;
+    transition: transform 0.5s;
+}
+#add-card-initial:hover {
+    filter:hue-rotate(180deg);
+    transform: scale(1.1);
+}
+@media only screen and (min-width: 800px) {
+    #add-card-initial, #explore-end-initial {
+        width: 750px;
+        padding: 0 calc(calc(100% - 750px) / 2);
+    }
+}
+@media only screen and (max-width: 800px) {
+    #presetlist > * {
+        flex-direction: column;
+    }
+    .termset > header {
+        width: 100%;
+    }
+}
+
+.termsetPreview {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+}
+.termsetPreview > * {
+    background-color: white;
+    border-radius: 0.25em;
+    border: 0;
+}
+.termset {
+    cursor: pointer;
+    transition: outline 0.1s;
+}
+
+.termset:hover {
+    outline: 5px solid var(--primary);
 }

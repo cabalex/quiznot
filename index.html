@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <link rel="shortcut icon" href="quiznot-temp.ico">
+    <script src="core/presets.js" type="text/javascript"></script>
     <script src="core/index.js" type="text/javascript"></script>
     <script src="core/cards.js" type="text/javascript"></script>
     <script src="core/qrcode.min.js" type="text/javascript"></script>
@@ -20,7 +21,7 @@
     <meta property="og:description" content="Make learning those boring old terms fun!">
     <title>Quiznot</title>
 </head>
-<body>
+<body style="overflow-x: hidden">
     <div id="header">
         <ul>
             <!-- probably bad practice but i like my full links-->
@@ -29,11 +30,11 @@
         </ul>
     </div>
     <div style="height: 50px"></div>
-    <div id="games-container">
+    <div id="games-container" class="container">
         <!-- Cover the games on client side -->
         <div id="cover"></div>
         <b id="games-message" style="margin-left: 10px">Enter a term or two before playing some games</b>
-        <div id="gamelist">
+        <div id="gamelist" class="btnrow">
             <a href="games/learn/index.html" title="Learn your terms through reinforcement." class="btn"><span class="material-icons">school</span> Learn</a>
             <a href="games/quiz/index.html" title="Quiz yourself!" class="btn"><span class="material-icons">quiz</span> Quiz</a>
             <a title="Guide a line of balls through a series of blocks. Get the right answer to lengthen your chain. Last as long as you can!" class="btn-disabled"><img class="img-icons" src="games/termvsblock/icon.png"> Term vs. Block</a>
@@ -41,7 +42,7 @@
             <a href="games/termninja/index.html" title="Slice through blocks of definitions using your knowledge!" class="btn"><span class="material-icons">browser_not_supported</span> Term Ninja</a>
         </div>
     </div>
-    <div id="cards-quickactions">
+    <div id="cards-quickactions" class="btnrow">
         <div class="btn" title="Record terms with your voice! Opens the record panel." id="open-record" onclick="record()"><span class="material-icons">mic</span></div>
         <div class="btn" title="Import terms. You can also import from Quizlet as well!" onclick="importQuizlet()"><span class="material-icons">cloud_upload</span></div>
         <div class="btn-disabled" disable-btn="true" title="Export terms to clipboard." id="btn-exportterms" onclick="exportTerms(this)"><span class="material-icons">cloud_download</span></div>
@@ -50,10 +51,20 @@
         <div class="btn-danger" onclick="removeAllCards()"><span class="material-icons">delete</span> Delete all</div>
         <p id="termCount">0 terms</p>
     </div>
-    <div id="cardlist">
+    <div class="list" id="cardlist">
         <div class="card" id="add-card" tabindex="0" onmousedown="addCard(); event.preventDefault(); event.stopPropagation();" onfocus="addCard();">
-            Add a card...
+            <p id="add-card-default">Add a card...</p>
+            <img src="initial.svg" id="add-card-initial">
         </div>
+    </div>
+    <div style="height: calc(85vh - 550px)"></div>
+    <div class="container">
+        <h1><span class="material-icons">explore</span> Explore preset termlists</h1>
+    </div>
+    <div class="list" id="presetlist">
+        <div class="card" id="termset-diy"><p>Add your current termset to your explore tab! All it needs is a name.</p><div class="divider"></div><div><input type="text" id="termsetName" placeholder="My awesome termset"></div><div class="btn" onclick="setPreset();">Add it!</div></div>
+        <div class="card" style="background-color: transparent" id="explore-initial"><p>Preset terms have been hidden to save your system's resources.</p><div onclick="loadExplore()" class="btn">Load Explore</div></div>
+        <img src="explore-end.svg" id="explore-end-initial">
     </div>
     <div id="record" class="cover">
         <div class="btn" style="background-color: transparent; color: black;" onclick="closeRecord()"><span class="material-icons">arrow_back</span></div>
@@ -68,9 +79,7 @@
     <div id="exportQR" class="cover">
         <div class="btn" style="background-color: transparent; color: black;" onclick="closeQR()"><span class="material-icons">arrow_back</span></div>
         <a id="qrMsg">Your QR codes will appear here.</a>
-        <div class="cover-center" id="qrcode">
-            
-        </div>
+        <div class="cover-center" id="qrcode"></div>
     </div>
     <div id="credits" class="cover">
         <div class="btn" style="background-color: transparent; color: black;" onclick="hideCredits()"><span class="material-icons">arrow_back</span></div>
