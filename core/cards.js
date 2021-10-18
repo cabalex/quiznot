@@ -20,9 +20,6 @@ var isRecordOpen = false;
 var promiseQR = null;
 
 $(document).ready(function() {
-    // Hide add card element initially (prevents janky animations)
-    $('#add-card-default').show();
-    $('#add-card-initial').hide();
     // Load cards...
     if (window.location.search.includes("?s=")) {
         // load new set
@@ -32,6 +29,13 @@ $(document).ready(function() {
     }
     const cards = getCards();
     if (cards == null) { cards = {} };
+    if (Object.keys(cards).length == 0) {
+        $('#add-card-default').hide();
+        $('#add-card-initial').show();
+    } else {
+        $('#add-card-default').show();
+        $('#add-card-initial').hide();
+    }
     // Load explore; do not load it if too many terms are out (lag)
     if (Object.keys(cards).length < 50) {
         loadExplore();
