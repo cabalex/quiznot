@@ -1,0 +1,110 @@
+body {
+    overflow: hidden;
+}
+
+.puzzleGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    align-items: stretch;
+    margin: 10px;
+}
+#gameContent {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 75px);
+}
+.puzzleGrid > * {
+    align-self: stretch;
+    width: 75%;
+}
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes popOut {
+    0% {
+        top: inherit;
+        left: inherit;
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+.card {
+    position: relative;
+    user-select: none;
+    animation: popIn 0.2s ease-out;
+}
+.card img, .card-deleted img {
+    height: 30px;
+    position: absolute;
+    right: -20px;
+    top: calc(calc(100% - 30px) / 2);
+    z-index: 0;
+}
+.a img {
+    left: -20px;
+}
+.card-deleted {
+    background-color: var(--grey);
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+    border-radius:  0.25em;
+    animation: popOut 0.2s ease-in;
+}
+.card-deleted .q, .card-deleted .q > * {
+    opacity: 0 !important;
+    animation: none;
+}
+.card-deleted .q  * {
+    display: none;
+}
+.q {
+    z-index: 5;
+    transition: filter 0.2s;
+    filter: drop-shadow(0 0 2px black);
+}
+.a {
+    z-index: 4;
+}
+.dragging {
+    z-index: 999;
+    filter: drop-shadow(0 0 5px black);
+}
+#finishModal { display: none; }
+#finishInner {
+    padding: 10px;
+    background-color: #15222E;
+    border-radius: 0.25em;
+    width: fit-content;
+    margin: auto;
+    margin-top: 5vh;
+}
+#pg-1 {
+    z-index: 50;
+}
+@media screen and (max-width: 700px) {
+    .puzzleGrid {
+        overflow-y:visible;
+        grid-template-columns: 1fr 1fr;
+    }
+    #pg-2 {
+        overflow-y: auto;
+    }
+    .card-deleted {
+        height: 0px;
+    }
+}

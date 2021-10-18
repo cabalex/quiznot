@@ -47,7 +47,7 @@ html {
     padding: 5px;
     font-size: 32px;
 }
-#cards-quickactions {
+.btnrow {
     justify-content: center;
 }
 p {

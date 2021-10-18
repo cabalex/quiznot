@@ -351,6 +351,7 @@ function exploreQR(name) {
 function loadPreset(name) {
     console.log(name)
     localStorage.setItem('cards', JSON.stringify(presetTerms[name]));
+    $(window).scrollTop(0);
     window.location.reload();
 }
 
