@@ -145,6 +145,7 @@ p {
     flex-wrap: nowrap;
     flex-direction: column;
     padding: 5px;
+    align-items: center;
 }
 .card {
     background-color: var(--grey);

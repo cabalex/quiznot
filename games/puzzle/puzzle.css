@@ -7,13 +7,13 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
     width: calc(100% - 20px);
-    height: calc(100% - 20px);
     align-items: stretch;
     margin: 10px;
 }
 #gameContent {
     display: flex;
     flex-direction: column;
+    align-content: center;
     height: calc(100vh - 75px);
 }
 .puzzleGrid > * {
@@ -42,6 +42,18 @@ body {
         opacity: 0;
     }
 }
+@keyframes shakeDeny {
+    0% {
+        transform: 0;
+    }
+    33% {
+        transform: translateX(-10px);
+        border-color: red;
+    }
+    66% {
+        transform: translateX(10px);
+    }
+}
 .card {
     position: relative;
     user-select: none;
@@ -60,6 +72,7 @@ body {
 .card-deleted {
     background-color: var(--grey);
     opacity: 0;
+    margin: 10px;
     user-select: none;
     pointer-events: none;
     border-radius:  0.25em;
@@ -68,9 +81,6 @@ body {
 .card-deleted .q, .card-deleted .q > * {
     opacity: 0 !important;
     animation: none;
-}
-.card-deleted .q  * {
-    display: none;
 }
 .q {
     z-index: 5;
@@ -96,15 +106,12 @@ body {
 #pg-1 {
     z-index: 50;
 }
+#pg-1 > .card {
+    align-self: center;
+}
 @media screen and (max-width: 700px) {
     .puzzleGrid {
         overflow-y:visible;
         grid-template-columns: 1fr 1fr;
-    }
-    #pg-2 {
-        overflow-y: auto;
-    }
-    .card-deleted {
-        height: 0px;
     }
 }

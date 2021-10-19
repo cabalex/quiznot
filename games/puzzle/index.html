@@ -36,7 +36,7 @@
         <div id="finishInner">
             <h1>TIME!</h1>
             <p>You solved <span class="highlight" id="termCount">0</span> terms in <span class="highlight" id="resultTime">0</span>.</p>
-            <p id="inspirationalText"></p>
+            <i id="mobileAlert" style="display: none">Play on desktop to test more terms at once!</i>
             <!-- Todo: maybe put some stats here... -->
             <div class="btnrow">
                 <a href="./index.html" class="btn"><span class="material-icons">replay</span> Play again</a>
@@ -45,8 +45,8 @@
             
         </div>
     </div>
+    <p style="padding: 10px; font-weight: bold; flex-grow: 0">Drag terms over their definitions to match them! <span class="highlight" id="time"></span></p>
     <div id="gameContent">
-        <p style="padding: 10px; font-weight: bold">Drag terms over their definitions to match them! <span class="highlight" id="time"></span> </p>
         <div class="puzzleGrid" id="pg-1">
 
         </div>

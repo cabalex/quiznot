@@ -53,7 +53,7 @@
         <p id="termCount">0 terms</p>
     </div>
     <div class="list" id="cardlist">
-        <div class="card" id="add-card" tabindex="0" onmousedown="addCard(); event.preventDefault(); event.stopPropagation();" onfocus="addCard();">
+        <div class="card" id="add-card" tabindex="0" onmousedown="if (event.which === 1) {addCard()}; event.preventDefault(); event.stopPropagation();" onfocus="addCard();">
             <p id="add-card-default">Add a card...</p>
             <img src="initial.svg" id="add-card-initial">
         </div>
