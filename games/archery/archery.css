@@ -57,9 +57,10 @@
 }
 #crosshair p {
     position: absolute;
-    transform: translateX(40px) translateY(-50px) rotate(-15deg);
+    transform: translateX(40px) translateY(-120px) rotate(-15deg);
     font-size: 22px;
-    width: 40vw;
+    text-align: left;
+    width: 500px;
     overflow-wrap: break-word;
 }
 #terms {
