@@ -34,6 +34,8 @@
 
 #crosshair {
     display: none;
+    user-select: none;
+    pointer-events: visible;
 }
 @keyframes shoot {
     0% {
@@ -45,6 +47,8 @@
 }
 #crosshair img {
     height: 100px;
+    position: absolute;
+    padding: 1000px;
     cursor: none;
     transform: translateX(-50%) translateY(-50%);
 }
@@ -52,8 +56,11 @@
     animation: shoot 0.1s;
 }
 #crosshair p {
-    transform: translateX(-50px) translateY(-50px);
+    position: absolute;
+    transform: translateX(40px) translateY(-50px) rotate(-15deg);
     font-size: 22px;
+    width: 40vw;
+    overflow-wrap: break-word;
 }
 #terms {
     height: 100%;

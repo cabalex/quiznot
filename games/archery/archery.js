@@ -13,7 +13,7 @@ function startGame(e) {
   $('#crosshair').show();
   $('#infoText').css('visibility', 'visible');
   // Eventlisteners
-  $(document).on('mousemove', onMouseMove).on('mousedown', onClick).on('touchstart', onClick);
+  $(document).on('mousemove', onMouseMove).on('mousedown', onClick);
   // move mouse cursor to current position
   onMouseMove(e);
   endTime = Date.now() + 60000;
@@ -64,7 +64,7 @@ const onMouseMove = (e) =>{
 const onClick = (e) => {
   stats.clicks++;
 
-  const bounding = detectBounding(e.pageX || e.changedTouches[0].pageX, e.pageY || e.changedTouches[0].pageY);
+  const bounding = detectBounding(e.pageX, e.pageY);
   if (bounding != -1 && $('#card-' + bounding).text() == cards[selectedTerm]) {
     // TODO: maybe some fun animation
     stats.questionsAnswered++;
@@ -82,7 +82,7 @@ const onClick = (e) => {
 
 // Game Over!
 function endGame(){
-  $(document).off('mousemove').off('mousedown').off('touchstart');
+  $(document).off('mousemove').off('mousedown');
   $('#infoText').css('visibility', 'hidden');
   $('#crosshair').css('display', 'none');
   $('#finishModal').css('display', 'inline');

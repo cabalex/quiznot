@@ -46,6 +46,8 @@ html {
     margin: auto;
     padding: 5px;
     font-size: 32px;
+    width: 100%;
+    overflow-wrap: break-word;
 }
 .btnrow {
     justify-content: center;
