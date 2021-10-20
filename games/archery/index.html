@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="shortcut icon" href="../../quiznot-temp.ico">
+    <link rel="stylesheet" href="../../index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../core/index.js" type="text/javascript"></script>
+    <title>Quiznot / Archery</title>
+    <script type="text/javascript">
+        const cards = getCards();
+        if (Object.keys(cards).length == 0) {
+            window.location = '../../index.html';
+        }
+    </script>
+    <link rel="stylesheet" href="archery.css">
+    <script src="archery.js" type="text/javascript"></script>
+</head>
+<body style="overflow: hidden">
+    <div id="header">
+        <ul>
+            <!-- probably bad practice but i like my full links-->
+            <a href="../../index.html" id="title"><span class="material-icons">arrow_back</span> Quiznot</a>
+        </ul>
+    </div>
+    <div style="height: 50px"></div>
+    <div id="finishModal" class="modal">
+        <div id="finishInner">
+            <h1>FINISH!</h1>
+            <p><span class="material-icons">check</span> You got a score of <span class="highlight" id="scoreDisplay">0</span> (<span class="highlight" id="percentScore">0%</span>).</p>
+            <div class="btnrow">
+                <a href="./index.html" class="btn"><span class="material-icons">replay</span> Play again</a>
+                <a href="../../index.html" class="btn-danger"><span class="material-icons">arrow_back</span> Back home</a>
+            </div>
+            
+        </div>
+    </div>
+    <!-- page content -->
+    <div id="gameModal" class="modal" onclick="startGame(event)">
+        <h1>Click to play</h1>
+    </div>
+    <div id="infoText" style="visibility: hidden;">
+        <br>
+        <h2 class="termName mobile" style="font-weight: bold">Term Name</h2>
+        <p id="score">Current Score: 0/0</p>
+        <p id="time" class="highlight">01:00</p>     
+    </div>
+    <div id="terms" class="btnrow"></div>
+    <div id="crosshair">
+        <img src="assets/crosshair.svg" draggable="false">
+        <p class="termName desktop">Term Name</p>
+    </div>
+</div>
+</body>
+</html>

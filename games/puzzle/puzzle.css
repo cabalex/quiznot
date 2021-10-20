@@ -20,40 +20,6 @@ body {
     align-self: stretch;
     width: 75%;
 }
-@keyframes popIn {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-@keyframes popOut {
-    0% {
-        top: inherit;
-        left: inherit;
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0);
-        opacity: 0;
-    }
-}
-@keyframes shakeDeny {
-    0% {
-        transform: 0;
-    }
-    33% {
-        transform: translateX(-10px);
-        border-color: red;
-    }
-    66% {
-        transform: translateX(10px);
-    }
-}
 .card {
     position: relative;
     user-select: none;
