@@ -7,9 +7,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="shortcut icon" href="../../quiznot-temp.ico">
     <link rel="stylesheet" href="../../index.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <script src="../../core/index.js" type="text/javascript"></script>
-    <title>Quiznot / Learn</title>
+    <title>Quiznot / Term vs. Block</title>
     <script type="text/javascript">
         const cards = getCards();
         if (Object.keys(cards).length == 0) {
@@ -18,15 +18,50 @@
     </script>
     <!-- Homegrown styles for more uniformality -->
     <script src="termvsblock.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="termvsblock.css">
 </head>
 <body>
     <div id="header">
         <ul>
             <!-- probably bad practice but i like my full links-->
             <a href="../../index.html" id="title"><span class="material-icons">arrow_back</span> Quiznot</a>
+            <p id="fontSizeChange" onclick="zoomToggle()"><span class="material-icons">zoom_in</span></p>
         </ul>
     </div>
     <div style="height: 50px"></div>
     <!-- page content -->
+    <div id="gameModal" class="modal" onclick="startGame()">
+        <h1>Click to play</h1>
+    </div>
+    <div id="finishModal" class="modal">
+        <div id="finishInner">
+            <h1>TIME!</h1>
+            <p>You solved <span class="highlight" id="termCount">0</span> terms and lasted <span class="highlight" id="resultTime">00:00</span>.</p>
+            <p>Your longest snake was <span class="highlight" id="longestChain">0</span> long.</p>
+            <!-- Todo: maybe put some stats here... -->
+            <div class="btnrow">
+                <a href="./index.html" class="btn"><span class="material-icons">replay</span> Play again</a>
+                <a href="../../index.html" class="btn-danger"><span class="material-icons">arrow_back</span> Back home</a>
+            </div>
+        </div>
+    </div>
+    <div id="info">
+        <p class="highlight" id="infoTime">00:00</p>
+    </div>
+    <div id="gameContent">
+        <div id="snake">
+            <p id="termName">Get Ready!</p>
+            <div class="snakeBall" id="ball-0">33</div>
+            <div class="snakeBall" id="ball-1"></div>
+            <div class="snakeBall" id="ball-2"></div>
+            <div class="snakeBall" id="ball-3"></div>
+            <div class="snakeBall" id="ball-4"></div>
+            <div class="snakeBall" id="ball-5"></div>
+            <div class="snakeBall" id="ball-6"></div>
+            <div class="snakeBall" id="ball-7"></div>
+            <div class="snakeBall" id="ball-8"></div>
+            <div class="snakeBall" id="ball-9"></div>
+        </div>
+    </div>
 </body>
 </html>

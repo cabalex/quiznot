@@ -174,7 +174,6 @@ async function exportQR(elem, cardList=-1) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "https://api.shrtco.de/v2/shorten", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        await xhr.send(`url=${encodeURIComponent(`${ENDPOINT}?s=${cardsStr}`)}`)
         xhr.onload = function() {
             const jsonRes = JSON.parse(xhr.responseText);
             if (jsonRes['ok']) {
@@ -187,6 +186,16 @@ async function exportQR(elem, cardList=-1) {
                 reject("Error requesting url service")
             }
         }
+        xhr.onerror = function(e) {
+            promiseQR = null;
+            if (xhr.status == 0) {
+                $('#qrMsg').html(`<span class="material-icons">wifi_off</span> Can't connect to URL service`);
+            } else {
+                $('#qrMsg').html(`<span class="material-icons">warning</span> Error connecting to url service: (Code ${xhr.status})`);
+                reject("Error connecting to url service: " + xhr.status)
+            }
+        }
+        xhr.send(`url=${encodeURIComponent(`${ENDPOINT}?s=${cardsStr}`)}`)
     })
     await promiseQR;
     promiseQR = null;

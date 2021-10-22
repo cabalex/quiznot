@@ -1,0 +1,144 @@
+:root {
+    --fontsize: 16px;
+}
+body {
+    overflow: hidden;
+}
+#finishModal {display: none;}
+#finishInner {
+    padding: 10px;
+    background-color: #15222E;
+    border-radius: 0.25em;
+    width: fit-content;
+    margin: auto;
+    margin-top: 5vh;
+}
+#info {
+    font-size: max(22px, 2vw);
+    background-color: transparent;
+    border: transparent;
+    color: black;
+    width: calc(100% - 5px);
+    text-align: center;
+}
+#infoTime {
+    font-size: 50px;
+    z-index: 99;
+    position: fixed;
+    width: 100vw;
+    text-align: center;
+}
+#snake {
+    transform: translateX(-25px);
+    position: absolute;
+    top: 70%;
+    left: calc(50% - 25px);
+}
+#termName {
+    font-size: 22px;
+    white-space: nowrap;
+    text-align: center;
+    transform: translateX(-25px);
+}
+.snakeBall {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 22px;
+    transition: left 0.1s;
+    background-color: red;
+    border-radius: 100%;
+}
+.blockrow {
+    display: flex;
+    position: absolute;
+    /*transition: top 0.1s ease-in-out;*/
+    width: 100vw;
+    z-index: 1;
+    gap: 5px;
+}
+.block, .block-broken {
+    padding: 10px 5px;
+    position: relative;
+    background-color: var(--secondary);
+    border-radius: 0.25em;
+    text-align: center;
+    display: flex;
+    align-items: flex-end;
+    font-size: var(--fontsize);
+    width: 25vw;
+}
+#fontSizeChange {
+    position: fixed;
+    color: white;
+    right: 5px;
+    top: 5px;
+    line-height: 35px;
+    border-radius: 0.25em;
+    background-color: var(--primary-dark);
+    height: 35px;
+    text-align: center;
+    width: 35px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    user-select: none;
+}
+#fontSizeChange:hover {
+    background-color: var(--primary-light)
+}
+@media only screen and (min-width: 800px) {
+    .block, .block-broken {
+        font-size: 22px;
+    }
+    #fontSizeChange {
+        display: none;
+    }
+}
+.block > p, .block-broken > p {
+    flex-grow: 0;
+    align-self: flex-end;
+    overflow-wrap: break-word;
+}
+.block > .correction {
+    color: red;
+    position: absolute;
+    height: 100%;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+.block-broken {
+    opacity: 0;
+    animation: break 0.1s ease-in;
+}
+@keyframes break {
+    0% {
+        transform: scale(1) translateX(-10px);
+        opacity: 1;
+    }
+    10% {
+        transform: scale(1.05) translateX(10px)
+    }
+    20% {
+        transform: scale(1.1) translateX(-5px)
+    }
+    30% {
+        transform: scale(1.15) translateX(5px)
+    }
+    40% {
+        transform: scale(1.2)
+    }
+    70% {
+        transform: scale(1.2)
+    }
+    100% {
+        transform: scale(0);
+        opacity: 1;
+    }
+}
+.block-hard {
+    background-color: black;
+}

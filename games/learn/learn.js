@@ -33,6 +33,22 @@ function shuffle(){
     question(0);
 }
 
+// Detect Key Presses - Left and Right
+document.onkeydown = checkKey;
+function checkKey(e) {
+    e = e || window.event;
+
+    if (e.keyCode == '37' || e.keyCode == '65') { // Left Arrow, A
+        question('previous');
+    }
+    else if (e.keyCode == '39' || e.keyCode == '68') { // Right arrow, D
+        question('next');
+    }
+    else if(e.keyCode == '38' || e.keyCode == '32' || e.keyCode == '87'){ // Spacebar, Up Arrow, W
+        flipCard();
+    }
+}
+
 // Take a number input.
 function question(input) {
     if(input == 'next'){
