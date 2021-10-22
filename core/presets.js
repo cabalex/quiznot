@@ -4,6 +4,23 @@ const userPresetTerms = localStorage.getItem('userPresetTerms') ?
 
 const presetTerms = {
     ...userPresetTerms,
+    "Biology": {
+            "Biology": "The study of living organisms is called ______",
+            "Deoxyribonucleic acid": "What is the scientific name for DNA",
+            "Observation, Question, Hypothesis, Experiment, Conclusion": "What is the scientific method",
+            "True": "Do scientific studies have to be repeatable",
+            "Charles Darwin": "_______ made the theory of evolution",
+            "Eukarya": "Which kingdom of organisms is for single-celled prokaryotes",
+            "Mitochondria ": "What is the powerhouse of the cell",
+            "semipermeable ": "A cell membrane is _____",
+            "genes": "You inherit ____ from your parents",
+            "46": "How many chromosomes does an individual person have",
+            "Carbon": "What element do all living organisms have incommon",
+            "ATP": "What is the primary carrier of energy in cells",
+            "Natural Selection": "The phrase ‘survival of the fittest’ is an alternate way to express what",
+            "Immigration": "_____ is when organisms join a new population and leave their allele frequencies",
+            "Emmigration": "______ is when organisms join a new population and bring their allele frequencies"
+        },        
     "Literary Devices": {
         "Alliteration": "A series of words in quick succession that all start with the same letter or sound.",
         "Allusion": "A passing or indirect descriptive reference to something.",
