@@ -5,7 +5,7 @@ var cardOrder = [];
 var selectedTerm;
 var snakeLength = 0;
 var lastSpawn = 0;
-var scrollSpeed = 0.1;
+var scrollSpeed = 0.05;
 var isStopped = false;
 var isZoomed = false;
 const stats = {
@@ -94,7 +94,16 @@ function detectCollisions() {
                     await sleep(100);
                 }
                 if (snakeLength > stats.longestChain) stats.longestChain = snakeLength;
-            } else if ($(this).attr('class').includes('block-hard')) {
+                return false;
+            }
+            // if incorrect, highlight correct term; sort of a roundabout way of doing such, probably should improve in the future
+            // I'm sort of against having the correct identifier in the DOM, but it may lead to slightly faster performance
+            const correctDef = cards[selectedTerm];
+            $(this).closest('.blockrow').find('.block').each(function() {
+                if ($(this).find('span').text() == correctDef) { $(this).attr('correct', 'true'); return false }
+            })
+
+            if ($(this).attr('class').includes('block-hard')) {
                 // hard block
                 scrollSpeed = 0;
                 while (snakeLength > 0) {

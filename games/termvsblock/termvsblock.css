@@ -142,3 +142,6 @@ body {
 .block-hard {
     background-color: black;
 }
+.block[correct=true] {
+    background-color: var(--success);
+}

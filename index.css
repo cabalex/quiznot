@@ -156,6 +156,7 @@ p {
     display: flex;
     flex-direction: row;
     border: 5px solid var(--grey);
+    overflow-wrap: break-word;
 }
 /* input is used for term and definition boxes */
 .card input, .card textarea {
