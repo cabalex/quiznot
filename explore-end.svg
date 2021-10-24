@@ -24,12 +24,12 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="0.48567463"
-     inkscape:cx="853.45204"
-     inkscape:cy="390.17892"
+     inkscape:cx="853.45203"
+     inkscape:cy="392.23791"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
-     inkscape:window-y="1072"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -54,21 +54,21 @@
        y="0"><tspan
          x="654.5506"
          y="130.70682"
-         id="tspan181349"><tspan
+         id="tspan7824"><tspan
    style="font-weight:bold;font-size:66.6667px"
-   id="tspan181347">Looking for more?</tspan>
+   id="tspan7822">Looking for more?</tspan>
 </tspan><tspan
-         x="659.90234"
+         x="587.94922"
          y="189.71135"
-         id="tspan181351">You can also import from Quizlet,
+         id="tspan7826">You can also import from a spreadsheet,
 </tspan><tspan
          x="650.88867"
          y="239.71135"
-         id="tspan181353">or scan compatible QR codes from
+         id="tspan7828">or scan compatible QR codes from
 </tspan><tspan
          x="678.76953"
          y="289.71135"
-         id="tspan181355">friends who've made term lists.</tspan></text>
+         id="tspan7830">friends who've made term lists.</tspan></text>
     <path
        sodipodi:type="star"
        style="fill:#808080"

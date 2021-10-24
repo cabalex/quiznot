@@ -101,8 +101,8 @@ function flipTermsDef(){
     location.reload();
 }
 
-function importQuizlet() {
-    let text = prompt('Copy-paste your terms here (You can get them from exporting from this page, or from Quizlet [Cards page > three dots > Export > Copy text])\nNOTE: This will overwrite your current term list.')
+function importTSV() {
+    let text = prompt('Copy-paste your terms here (You can get them from exporting from this page, or from supporting tab-separated term lists, e.g. spreadsheets)\nNOTE: This will overwrite your current term list.')
     // text is null or empty means user cancelled prompt
     if (!text) {
         return
