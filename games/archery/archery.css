@@ -66,13 +66,10 @@
 #terms {
     height: 100%;
 }
-.mobile { display: none; }
 @media only screen and (max-width: 800px) {
     #terms {
         flex-direction: column;
     }
-    .mobile { display: block; }
-    .desktop { display: none; }
     #crosshair img {
         opacity: 0;
         cursor: default;

@@ -31,11 +31,13 @@
     <div style="height: 50px"></div>
     <!-- page content -->
     <div id="gameModal" class="modal" onclick="startGame()">
-        <h1>Click to play</h1>
+        <h1 class="desktop">Click to play</h1>
+        <h1 class="mobile">Tap to play</h1>
+        <p>Break through the definition for the term listed on your snake to lengthen it. Last as long as you can!</p>
     </div>
     <div id="finishModal" class="modal">
         <div id="finishInner">
-            <h1>TIME!</h1>
+            <h1>GAME OVER!</h1>
             <p>You solved <span class="highlight" id="termCount">0</span> terms and lasted <span class="highlight" id="resultTime">00:00</span>.</p>
             <p>Your longest snake was <span class="highlight" id="longestChain">0</span> long.</p>
             <!-- Todo: maybe put some stats here... -->

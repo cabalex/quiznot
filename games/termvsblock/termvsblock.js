@@ -170,12 +170,17 @@ function dragger(event) {
     event.preventDefault()
     if (scrollSpeed == 0) return;
     // touch or click drag
-    const start = [event.pageX || event.touches[0].clientX, event.pageY || event.touches[0].clientY];
+    const start = event.pageX || event.touches[0].clientX;
     var offset = $('#snake').offset();
+    if (offset['left'] > window.innerWidth) {
+        offset['left'] = window.innerWidth;
+        $('#snake').offset(offset)
+    }
 
     function handle_dragging(e){
         if (scrollSpeed == 0) { return; }
-        var left = offset['left'] + ((e.pageX || e.touches[0].clientX) - start[0]);
+        var left = offset['left'] + ((e.pageX || e.touches[0].clientX) - start);
+        if (left < 0 || (left > offset['left'] && left > window.innerWidth)) { return; }
         $('#snake').offset({left: left, 'top': offset['top']});
     }
 

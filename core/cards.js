@@ -168,11 +168,12 @@ async function exportQR(elem, cardList=-1) {
         $('#exportQR').slideDown(100);
         $('#qrcode').html('');
         $('#qrMsg').text('Generating QR code...');
-        $('body').css('overflow', 'hidden');
+        $('body').css('overflow-y', 'hidden');
         cardsStr = JSON.stringify(cardList);
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "https://api.shrtco.de/v2/shorten", true);
+        xhr.timeout = 2000;
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         xhr.onload = function() {
             const jsonRes = JSON.parse(xhr.responseText);
@@ -189,7 +190,7 @@ async function exportQR(elem, cardList=-1) {
         xhr.onerror = function(e) {
             promiseQR = null;
             if (xhr.status == 0) {
-                $('#qrMsg').html(`<span class="material-icons">wifi_off</span> Can't connect to URL service`);
+                $('#qrMsg').html(`<span class="material-icons">wifi_off</span> Can't connect to URL service.<br>Close this window and try again.`);
             } else {
                 $('#qrMsg').html(`<span class="material-icons">warning</span> Error connecting to url service: (Code ${xhr.status})`);
                 reject("Error connecting to url service: " + xhr.status)
@@ -204,7 +205,7 @@ async function exportQR(elem, cardList=-1) {
 
 function closeQR() {
     $('#exportQR').slideUp(100);
-    $('body').css('overflow', '');
+    $('body').css('overflow-y', '');
 }
 
 // Adds a card. Takes the event and element that was clicked.
@@ -250,14 +251,14 @@ function record() {
     resetRecord();
     $('#record').slideDown(100);
     // hide pesky scrollbar
-    $('body').css('overflow', 'hidden');
+    $('body').css('overflow-y', 'hidden');
     isRecordOpen = true;
 }
 
 function closeRecord() {
     $('#record').slideUp(100);
     recognition.stop();
-    $('body').css('overflow', '');
+    $('body').css('overflow-y', '');
     isRecordOpen = false;
 }
 async function startRecording() {
@@ -329,10 +330,12 @@ function _record(kind="term") {
 
 /* Credits */
 function showCredits() {
+    $('body').css('overflow-y', 'hidden');
     $('#credits').slideDown(100);
 }
 
 function hideCredits() {
+    $('body').css('overflow-y', '');
     $('#credits').slideUp(100);
 }
 

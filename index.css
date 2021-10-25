@@ -215,6 +215,7 @@ div.definition {
 #qrcode {
     padding: 50px;
 }
+.cover-center { padding: 0 10px;}
 .cover-center, .cover-center * {
     vertical-align: middle;
     margin: auto;
@@ -354,4 +355,13 @@ div.definition {
     66% {
         transform: translateX(10px);
     }
+}
+
+.mobile { display: none; }
+@media only screen and (max-width: 800px) {
+    #terms {
+        flex-direction: column;
+    }
+    .mobile { display: block; }
+    .desktop { display: none; }
 }

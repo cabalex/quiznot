@@ -26,7 +26,7 @@
         <ul>
             <!-- probably bad practice but i like my full links-->
             <img src="quiznot-temp.ico" width="30px" style="margin: -5px 5px">
-            <li id="title" onclick="showCredits()" style="cursor: pointer">Quiznot <span style="font-size: 12px">(credits)</span></li>
+            <li id="title" onclick="showCredits()" style="cursor: pointer">Quiznot <span style="font-size: 12px">(click for credits)</span></li>
         </ul>
     </div>
     <div style="height: 50px"></div>
@@ -64,7 +64,7 @@
         <h1><span class="material-icons">explore</span> Explore preset termlists</h1>
     </div>
     <div class="list" id="presetlist">
-        <div class="card" id="termset-diy"><p>Add your current termset to your explore tab! All it needs is a name.</p><div class="divider"></div><div><input type="text" id="termsetName" placeholder="My awesome termset"></div><div class="btn" onclick="setPreset();">Add it!</div></div>
+        <div class="card" id="termset-diy"><p>Add your current termset to your explore tab! All it needs is a name.</p><div class="divider"></div><div><input type="text" id="termsetName" placeholder="My awesome termset" style="border-bottom: 2px solid grey"></div><div class="btn" onclick="setPreset();">Add it!</div></div>
         <div class="card" style="background-color: transparent" id="explore-initial"><p>Preset terms have been hidden to save your system's resources.</p><div onclick="loadExplore()" class="btn">Load Explore</div></div>
         <img src="explore-end.svg" id="explore-end-initial">
     </div>
@@ -86,17 +86,17 @@
     <div id="credits" class="cover">
         <div class="btn" style="background-color: transparent; color: black;" onclick="hideCredits()"><span class="material-icons">arrow_back</span></div>
         <div class="cover-center">
-            <h1>Quiznot</h1>
+            <h1><img src="quiznot-temp.ico"> Quiznot</h1>
             <p>Was created by:</p>
             <br>
             <p>Alex Sherbrooke (<a href="https://cabalex.github.io">cabalex</a>)</p>
             <p>Hershraj Niranjani (<a href="https://github.com/talkierbox">talkierbox</a>)</p>
             <p>Ryan McCombs</p>
             <br>
-            <p>for the 2021 Congressional App Challenge.</p>
+            <p>for the <a href="https://www.congressionalappchallenge.us/">2021 Congressional App Challenge</a>.</p>
             <br>
             <h2>Built with:</h2>
-            <p>Pure JS, jQuery, <a href="https://github.com/davidshimjs/qrcodejs">QRCode.js</a> (QR Codes), <a href="https://shrtco.de/">shrtco.de</a> (URL shortening)</p>
+            <p>JS/HTML, <a href="https://jquery.com/">jQuery</a>, <a href="https://fonts.google.com/icons?selected=Material+Icons">Google's Material Icons</a>, <a href="https://github.com/davidshimjs/qrcodejs">QRCode.js</a> (QR Codes), <a href="https://shrtco.de/">shrtco.de</a> (URL shortening)</p>
             <br>
             <p><a href="https://cabalex.github.io">cabalex.github.io</a> (<a href="https://github.com/cabalex/quiznot">view repository</a>)</p>
         </div>
