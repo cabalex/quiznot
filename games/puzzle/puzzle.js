@@ -35,9 +35,6 @@ function endGame() {
     clearInterval(stopwatchInterval);
     $('#termCount').text(shuffledCards.length);
     $('#resultTime').text(milisecondsToTime(Date.now() - startTime))
-    if (cardCount < 16) {
-        $('#mobileAlert').show();
-    }
 }
 
 // Term dragging functionality. Supports both mobile (ontouchstart) and desktop (onmousedown)

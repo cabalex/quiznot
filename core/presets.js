@@ -3,25 +3,7 @@ const userPresetTerms = localStorage.getItem('userPresetTerms') ?
     JSON.parse(localStorage.getItem('userPresetTerms')) : {};
 
 const presetTerms = {
-    ...userPresetTerms,
-    "Biology": {
-        "Biology": "The study of living organisms",
-        "Deoxyribonucleic acid": "The scientific name for DNA",
-        "Scientific Method": "Observation, Question, Hypothesis, Experiment, Conclusion",
-        "Charles Darwin": "The creator of the Theory of Evolution",
-        "Eukaryote": "A cell that has a distinct nucleus",
-        "Prokaryote": "A cell that does not have a distinct nucleus",
-        "Mitochondria": "The powerhouse of the cell",
-        "semipermeable": "A cell membrane is _____",
-        "genes": "You inherit ____ from your parents",
-        "46": "How many chromosomes does an individual person have",
-        "Carbon": "What element do all living organisms have in common",
-        "Glucose": "The most abundant monosaccharide, or sugar",
-        "ATP": "The primary carrier of energy in cells",
-        "Natural Selection": "The phrase ‘survival of the fittest’ is an alternate way to express what",
-        "Immigration": "The process in which organisms join a new population and leave their allele frequencies",
-        "Emmigration": "The process in whichorganisms join a new population and bring their allele frequencies"
-        },        
+    ...userPresetTerms,        
     "Literary Devices": {
         "Alliteration": "A series of words in quick succession that all start with the same letter or sound.",
         "Allusion": "A passing or indirect descriptive reference to something.",
@@ -39,6 +21,40 @@ const presetTerms = {
         "Personification": "A figure of speech in which a non-human thing (an idea, object, mammal) is given human characteristics.",
         "Simile": "a figure of speech that compares two things using the word like or as.",
         "Symbolism": "A concrete or real object used to represent an idea."
+    },
+    "Biology": {
+        "Biology": "The study of living organisms",
+        "Deoxyribonucleic acid": "The scientific name for DNA",
+        "Scientific Method": "Observation, Question, Hypothesis, Experiment, Conclusion",
+        "Charles Darwin": "The creator of the Theory of Evolution",
+        "Eukaryote": "A cell that has a distinct nucleus",
+        "Prokaryote": "A cell that does not have a distinct nucleus",
+        "Mitochondria": "The powerhouse of the cell",
+        "semipermeable": "A cell membrane is _____",
+        "genes": "You inherit ____ from your parents",
+        "46": "How many chromosomes does an individual person have",
+        "Carbon": "What element do all living organisms have in common",
+        "Glucose": "The most abundant monosaccharide, or sugar",
+        "ATP": "The primary carrier of energy in cells",
+        "Natural Selection": "The phrase ‘survival of the fittest’ is an alternate way to express what",
+        "Immigration": "The process in which organisms join a new population and leave their allele frequencies",
+        "Emmigration": "The process in whichorganisms join a new population and bring their allele frequencies"
+    },
+    "Trigonometric Identities": {
+        "1":"sin^2 x + cos^2 x",
+        "sin 2x":"2 sin x cos x",
+        "cos 2x":"cos^2 x - sin^2 x",
+        "tan x":"sin x / cos x",
+        "sec x":"1 / cos x",
+        "csc x":"1 / sin x",
+        "cot x":"1 / tan x",
+        "sin x+y":"sin x cos y + cos x sin y",
+        "cos x+y":"cos x cos y - sin x sin y",
+        "sin x":"cos (pi/2 - x)",
+        "cos x":"sin (pi/2 - x)",
+        "sin x-y":"sin x cos y - cos x sin y",
+        "cos x-y":"cos x cos y + sin x sin y",
+        "tan 2x":"(2 tan x) / (1- tan^2 x)"
     },
     "US Citizenship Quiz": {
         "2":"The number of years in a term for a member of the House of Representatives",

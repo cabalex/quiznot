@@ -80,4 +80,10 @@ body {
         overflow-y:visible;
         grid-template-columns: 1fr 1fr;
     }
+    .card-deleted { display: none }
+}
+/* puzzle uses a different width requirement than other games */
+@media screen and (min-width: 700px) {
+    .mobile { display: none; }
+    .desktop { display: block; }
 }
